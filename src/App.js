@@ -6,10 +6,17 @@ import StarWarsRaw from './StarWarsRaw';
 import StarWars from './StarWars';
 import MyButton from './MyButton';
 import { useState } from 'react';
-
+import axios from 'axios';
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const apiCall = () => {
+    axios.get('http://localhost:8080').then((data) => {
+      //this console.log will be in our frontend console
+      console.log(data)
+    })
+  }  
 
   function handleClick() {
     setCount(count + 1);
@@ -18,6 +25,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <button onClick={apiCall}>Make API Call</button>        
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
