@@ -1,7 +1,8 @@
-function MyButton() {
+function MyButton({count, onClick}) {
     return (
         <div>
-            <button>I'm a button</button>
+            <button onClick={onClick}>Clicked {count}</button>     
+            <span>you clicked {count} times </span>
         </div>
     );
   }

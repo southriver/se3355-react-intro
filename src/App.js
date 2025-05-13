@@ -10,11 +10,13 @@ import axios from 'axios';
 
 function App() {
   const [count, setCount] = useState(0);
+  const [message, setMessage] = useState(''); // State to hold the message
 
   const apiCall = () => {
-    axios.get('http://localhost:8080').then((data) => {
+    axios.get('http://localhost:8080/').then((response) => {
       //this console.log will be in our frontend console
-      console.log(data)
+      setMessage(response.data.message)
+      console.log(response.data)
     })
   }  
 
@@ -25,7 +27,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={apiCall}>Make API Call</button>        
+        
+        <button onClick={apiCall}>Make API Call</button>  
+        <label>{message}</label>
+
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -38,7 +43,7 @@ function App() {
         <Item count={count} onClick={handleClick} />
         <Item count={count} onClick={handleClick} />
 
-        {/* <MyButton/> */}
+        <MyButton count={count} onClick={handleClick} />
       </header>
     </div>
   );
